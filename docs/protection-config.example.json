@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "workspace_root": "C:/path/to/ANTI-REA",
+  "providers": {
+    "themida": {
+      "executable": "C:/path/to/Themida/Themida.exe",
+      "version": "unknown",
+      "edition": "unknown",
+      "cli_profile": "themida-project-cli",
+      "allow_execution": false,
+      "license_acknowledged": false,
+      "approved_projects": []
+    },
+    "vmprotect": {
+      "executable": "C:/path/to/VMProtect/VMProtect_Con.exe",
+      "version": "unknown",
+      "edition": "unknown",
+      "cli_profile": "vmprotect-console",
+      "allow_execution": false,
+      "license_acknowledged": false,
+      "approved_projects": []
+    },
+    "code_virtualizer": {
+      "executable": "C:/path/to/CodeVirtualizer/Virtualizer.exe",
+      "version": "unknown",
+      "edition": "unknown",
+      "cli_profile": "code-virtualizer-4",
+      "allow_execution": false,
+      "license_acknowledged": false,
+      "approved_projects": []
+    }
+  }
+}

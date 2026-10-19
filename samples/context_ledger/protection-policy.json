@@ -1,0 +1,9 @@
+{
+  "core_roots": ["antirea_mix"],
+  "sensitive_functions": [],
+  "public_presentation": {
+    "antirea_present_score": "Pure forwarding wrapper for CLI presentation; no hidden constants, decisions, or transforms."
+  },
+  "sensitive_globals": [],
+  "max_functions": 64
+}

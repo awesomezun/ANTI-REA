@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="408" viewBox="0 0 1280 408" role="img" aria-labelledby="title desc">
+  <title id="title">ANTI-REA — agentic software protection</title>
+  <desc id="desc">The defense workflow plans protection, applies an engine, verifies functionality and cost, and learns from reports produced by an external evaluator. The implementation is experimental and Windows-first.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9" fill="none" stroke="#6f8294" stroke-width="1.6"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="408" rx="20" fill="#10161e"/>
+  <path d="M55 49 L75 41 L95 49 V68 C95 84 85 94 75 100 C65 94 55 84 55 68 Z" fill="none" stroke="#83e1c5" stroke-width="2.5"/>
+  <path d="M66 70 L72 76 L85 61" fill="none" stroke="#83e1c5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <text x="116" y="80" fill="#f0f5f8" font-size="39" font-weight="700" letter-spacing="1">ANTI-REA</text>
+    <text x="55" y="141" fill="#c0cbd6" font-size="24">Agentic software protection.</text>
+    <rect x="905" y="52" width="320" height="32" rx="16" fill="#17272b" stroke="#2b4747"/>
+    <circle cx="924" cy="68" r="3.5" fill="#83e1c5"/>
+    <text x="939" y="73" fill="#a5dfd0" font-size="12" font-weight="600" letter-spacing="1.3">EXPERIMENTAL / WINDOWS FIRST</text>
+
+    <rect x="54" y="183" width="877" height="137" rx="12" fill="#141e28" stroke="#2b3948"/>
+    <text x="76" y="208" fill="#7e94a8" font-size="10" font-weight="600" letter-spacing="2">LOCAL DEFENSE WORKFLOW</text>
+
+    <text x="76" y="250" fill="#83e1c5" font-size="12" font-weight="600">01</text>
+    <text x="105" y="250" fill="#f0f5f8" font-size="24" font-weight="600">Plan</text>
+    <text x="76" y="281" fill="#a8b9c8" font-size="14">Scope, policy, approved inputs</text>
+    <path d="M313 251 H345" fill="none" stroke="#6f8294" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <text x="371" y="250" fill="#83e1c5" font-size="12" font-weight="600">02</text>
+    <text x="400" y="250" fill="#f0f5f8" font-size="24" font-weight="600">Protect</text>
+    <text x="371" y="281" fill="#a8b9c8" font-size="14">Engine-specific application</text>
+    <path d="M607 251 H639" fill="none" stroke="#6f8294" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <text x="665" y="250" fill="#83e1c5" font-size="12" font-weight="600">03</text>
+    <text x="694" y="250" fill="#f0f5f8" font-size="24" font-weight="600">Verify</text>
+    <text x="665" y="281" fill="#a8b9c8" font-size="14">Function, coverage, cost</text>
+
+    <path d="M942 251 H974" fill="none" stroke="#6f8294" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <rect x="988" y="183" width="237" height="137" rx="12" fill="#131b24" stroke="#405166" stroke-dasharray="5 5"/>
+    <text x="1010" y="208" fill="#7e94a8" font-size="10" font-weight="600" letter-spacing="1.5">EXTERNAL EVALUATION</text>
+    <text x="1010" y="250" fill="#f0f5f8" font-size="24" font-weight="600">Learn</text>
+    <text x="1010" y="281" fill="#a8b9c8" font-size="14">Reports feed the next iteration</text>
+
+    <text x="55" y="365" fill="#8093a5" font-size="13">Local MCP + CLI</text>
+    <circle cx="186" cy="361" r="2" fill="#405166"/>
+    <text x="202" y="365" fill="#8093a5" font-size="13">Pluggable protection engines</text>
+    <circle cx="388" cy="361" r="2" fill="#405166"/>
+    <text x="404" y="365" fill="#8093a5" font-size="13">Evidence for every iteration</text>
+    <text x="1225" y="365" fill="#61778a" font-size="12" text-anchor="end">Architecture overview · engine coverage varies</text>
+  </g>
+</svg>

@@ -1,0 +1,30 @@
+# Local toolchains, build runs, and incoming external reports
+.tools/
+.runs/
+rea-analysis-reports/
+
+# Local experimental data, attack/defense evaluation logs, and multi-agent state
+results/
+.debate-of-agents/
+
+# Local operator / automation prompt files (kept locally, excluded from public repo)
+AGENTS.md
+root.md
+dependency.md
+docs/defense-automation-prompt.md
+docs/defense-loop.md
+docs/first-result.md
+docs/attacker-handoff.txt
+
+# Python / environment / local secrets
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+.pytest_cache/
+*.local.json
+.env
+.env.*
+
