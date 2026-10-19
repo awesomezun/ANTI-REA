@@ -1,69 +1,69 @@
-[English](docs/readme/README_en.md) · [简体中文](docs/readme/README_zh.md) · [繁體中文](docs/readme/README_zh-TW.md) · [日本語](docs/readme/README_ja.md) · **한국어** · [Türkçe](docs/readme/README_tr.md) · [Русский](docs/readme/README_ru.md) · [Tiếng Việt](docs/readme/README_vi.md) · [ไทย](docs/readme/README_th.md) · [Deutsch](docs/readme/README_de.md) · [Español](docs/readme/README_es.md) · [Français](docs/readme/README_fr.md) · [Українська](docs/readme/README_uk.md) · [Polski](docs/readme/README_pl.md) · [Português (Brasil)](docs/readme/README_pt-BR.md) · [العربية](docs/readme/README_ar.md) · [فارسی](docs/readme/README_fa.md) · [Bahasa Indonesia](docs/readme/README_id.md) · [Italiano](docs/readme/README_it.md) · [Ελληνικά](docs/readme/README_el.md) · [മലയാളം](docs/readme/README_ml.md)
+**English** · [简体中文](docs/readme/README_zh.md) · [繁體中文](docs/readme/README_zh-TW.md) · [日本語](docs/readme/README_ja.md) · [한국어](docs/readme/README_ko.md) · [Türkçe](docs/readme/README_tr.md) · [Русский](docs/readme/README_ru.md) · [Tiếng Việt](docs/readme/README_vi.md) · [ไทย](docs/readme/README_th.md) · [Deutsch](docs/readme/README_de.md) · [Español](docs/readme/README_es.md) · [Français](docs/readme/README_fr.md) · [Українська](docs/readme/README_uk.md) · [Polski](docs/readme/README_pl.md) · [Português (Brasil)](docs/readme/README_pt-BR.md) · [العربية](docs/readme/README_ar.md) · [فارسی](docs/readme/README_fa.md) · [Bahasa Indonesia](docs/readme/README_id.md) · [Italiano](docs/readme/README_it.md) · [Ελληνικά](docs/readme/README_el.md) · [മലയാളം](docs/readme/README_ml.md)
 
 # ANTI-REA
 
-### 바이너리, 애플리케이션, 핵심 로직을 REA로부터 보호하는 하나의 MCP.
+### One MCP for protecting binaries, applications, and core logic against REA.
 
-**지키고 싶은 핵심 기능이 있나요? 바이너리 레벨까지 분석·복제되지 않게 보호하세요.**
+**Have a core feature you need to protect? Keep it from being analyzed or cloned, down to the binary level.**
 
-[![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#현재-방어력-및-로드맵-testapp-vm-vs-실제-rea-공격)
-[![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#빠른-시작)
-[![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#빠른-시작)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#지원-엔진)
+[![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#current-defense--roadmap-testapp-vm-vs-live-rea-attacks)
+[![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#quick-start)
+[![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#quick-start)
+[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#supported-engines)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](LICENSE)
 
-[REA](https://github.com/morluto/rea) 같은 리버스 엔지니어링 도구는 에이전트에게 *"저 앱의 이 기능이 어떻게 돌아가는지 분석해서 내 프로젝트에 똑같이 만들어줘"*라고 시키면 바이너리를 뜯어보고 원래 로직을 그대로 재구현해냅니다.
+Reverse-engineering tools like [REA](https://github.com/morluto/rea) let an agent inspect a binary when you ask *"Understand how this feature works in that app and build a copy for my project."*
 
-**에이전틱 공격? 그럼 우리는 에이전틱 방어 — 시간이 갈수록 점점 강해지는 방어입니다.** **ANTI-REA**의 목표는 **REA가 분석할 수 있는 모든 대상과 분석 방식을 결국 전부 막아내는 것**입니다. 내 에이전트에게 **"내 프로그램의 핵심 기능이 REA에게 분석·복제되지 않도록 보호해줘"**라고 자연어로 말하면, 에이전트가 핵심 코드와 주변 단서를 찾아 난독화·가상화(VM)를 걸고, 원래 기능이 깨지지 않았는지와 실행 속도가 기존의 몇 % 수준으로 돌아가는지까지 측정해 알려줍니다.
+**Agentic attack? Meet agentic defense — defense that grows stronger over time.** The ultimate goal of **ANTI-REA** is to **block everything that REA can analyze**. Ask your agent in plain language — *"Protect the core logic in my program so REA can't analyze or clone it"* — and the agent locates your core functions and surrounding clues, applies obfuscation and virtualization (VM), verifies that behavior isn't broken, and measures what percentage of the original speed it runs at.
 
-사용자가 직접 복잡한 공격·방어 실험 환경을 구축해 방어 기법을 연구할 필요가 없습니다. **저희가 매일 방어 PC와 별도의 REA 공격 PC를 맞붙여 TestApp에 걸어둔 VM이 어디서 어떻게 뚫리는지 확인하고, 약점을 보완하며 시간이 갈수록 점점 강해지는 방어를 만들어가고 있습니다.** 사용자는 그렇게 날마다 단단해지는 ANTI-REA를 내 에이전트에 연결해 쓰기만 하면 됩니다.
-
----
-
-## 현재 방어력 및 로드맵 (TestApp VM vs. 실제 REA 공격)
-
-![실제 REA 공격 대비 TestApp VM 방어력 25%](docs/assets/defense-roadmap.svg)
-
-위 수치는 단순한 개발 일정이 아니라, **자체 보호를 적용한 TestApp을 별도 PC의 REA가 직접 공격했을 때 얼마나 안 뚫리는지(방어력)**를 나타냅니다.
-
-### 방어력 강화 단계 (최종 목표: REA가 분석하는 모든 것을 차단)
-
-- **25% (현재) · 1차 정적 복원 저지:** 기본 VM이 그대로 뚫리던 상태에서 출발해, 핸들러 다변화와 오퍼랜드 문맥 결합을 통해 외부 REA 정적 분석이 핵심 계산식을 한 번에 복원하지 못하도록 막아낸 단계입니다.
-- **50% · 정적 분석 및 주변 문맥 추론 차단:** 디스패처 내부 보조 함수와 호출 그래프 주변에 남는 단서까지 가려, 정적 디컴파일만으로는 원래 로직을 유추할 수 없게 만듭니다.
-- **75% · 동적 추적 및 디버깅 방어:** 정적 분석이 막혔을 때 공격 에이전트가 동원하는 디버거, Frida, 실행 트레이스, 메모리 덤프에서도 핵심 로직과 상수가 쉽게 노출되지 않도록 방어합니다.
-- **100% · REA가 분석하는 모든 대상과 경로의 완전 방어:** 네이티브 바이너리(C/C++, Rust, Go)뿐 아니라 .NET, Java/Kotlin, JavaScript/Electron, Python 등 REA가 지원하는 모든 분석 대상과 플랫폼(Windows, macOS 등)에서 REA의 분석·재구현을 막아내는 것이 최종 목표입니다.
+You don't need to build a complex attack-and-defense lab yourself. **Every day, we pit our defense environment against a separate REA attack environment on TestApp's VM, inspect how attacks break through, patch the weak spots, and continuously strengthen the defense.** You simply connect the battle-hardened ANTI-REA to your agent and use it.
 
 ---
 
-## 빠른 시작
+## Current Defense & Roadmap (TestApp VM vs. Live REA Attacks)
 
-### 1. 설치 및 에이전트 연결 (`Set up your agent`)
+![TestApp VM Defense vs. REA 25%](docs/assets/defense-roadmap.svg)
 
-직접 터미널 명령어나 설정 파일을 만질 필요 없이, 사용 중인 에이전트(Claude Code, Cursor, Codex, Gemini CLI 등)에게 아래처럼 시키면 에이전트가 알아서 설치하고 MCP 서버까지 연결합니다.
+This gauge is not an abstract project schedule — it represents **how well our VM-protected TestApp holds up against direct attacks from REA on a separate environment**.
+
+### Defense Stages (Ultimate Goal: Block Everything REA Analyzes)
+
+- **25% (Current) · First-Stage Static Reconstruction Blocked:** Starting from a baseline VM that was easily broken, handler diversification and operand context coupling now prevent external REA static analysis from reconstructing the core formula in one shot.
+- **50% · Block Static Analysis & Context Inference:** Hide internal dispatcher helpers and call-graph clues so the original logic cannot be inferred from static decompilation alone.
+- **75% · Defend Against Dynamic Tracing & Debugging:** Protect core logic and constants when attackers turn to debuggers, Frida, execution traces, and memory dumps.
+- **100% · Full Defense Across Everything REA Analyzes:** Extend protection beyond native binaries (C/C++, Rust, Go) to .NET, Java/Kotlin, JavaScript/Electron, Python, and macOS (Mach-O/ARM64), blocking REA across every target and analysis path it supports.
+
+---
+
+## Quick start
+
+### 1. Set up your agent
+
+No need to touch terminal commands or config files manually. Just ask your agent (Claude Code, Cursor, Codex, Gemini CLI, etc.):
 
 ```text
-ANTI-REA를 로컬 Python 가상환경(.venv)에 설치하고, 네가 바로 쓸 수 있게 antirea.defense_mcp 서버를 MCP에 연결해줘.
+Install ANTI-REA in a local Python virtual environment (.venv) and connect the antirea.defense_mcp server to your MCP configuration so you can use it right away.
 ```
 
-### 2. 에이전트에게 자연어로 시키기 (`Ask your agent`)
+### 2. Ask your agent
 
-설정이 끝나면 복잡한 명령줄 옵션을 외울 필요 없이, 에이전트에게 자연어로 요청하면 됩니다.
+Once connected, ask your agent in natural language:
 
 ```text
-내 프로젝트에서 핵심 계산 로직과 주변 단서가 REA에게 분석·복제되지 않도록 보호를 걸어주고, 원래 기능이 깨지지 않았는지랑 실행 속도가 기존의 몇 %로 돌아가는지 알려줘.
+Protect the core calculation logic and surrounding clues in my project so REA cannot analyze or clone them, and tell me if the original behavior is intact and what percentage of the original speed it runs at.
 ```
 
-이미 빌드된 실행 파일과 상용 프로텍터 설정이 있다면 이렇게 요청할 수도 있습니다:
+Or if you already have a built executable and a commercial protector profile:
 
 ```text
-app.exe에 VMProtect로 보호 적용 계획을 먼저 세워서 보여주고, 내가 승인하면 실행해줘.
+Create a VMProtect protection plan for app.exe, show it to me first, and run it once I approve.
 ```
 
-에이전트가 알아서 ANTI-REA MCP 도구를 호출해 연결된 보호 엔진을 점검(`protection_doctor`)하고, 어떤 파일에 어떻게 보호를 걸지 계획을 세워 보여준 뒤(`protection_plan`), 사용자가 승인하면 보호를 적용(`protection_protect`)합니다.
+Your agent automatically calls ANTI-REA MCP tools to check available engines (`protection_doctor`), generate a hashed execution plan (`protection_plan`), and run protection after approval (`protection_protect`).
 
-### 3. 터미널에서 직접 쓰기 (`Use the terminal`)
+### 3. Use the terminal
 
-에이전트를 거치지 않고 터미널에서 직접 지원 엔진 목록과 설정 상태를 확인할 수도 있습니다.
+You can also inspect supported providers and local setup directly from the terminal:
 
 ```powershell
 .\.venv\Scripts\python.exe -m antirea.defense_mcp --config .runs/protectors.local.json providers
@@ -72,48 +72,47 @@ app.exe에 VMProtect로 보호 적용 계획을 먼저 세워서 보여주고, �
 
 ---
 
-## 어떻게 작동하고, 어떻게 매일 강해지나요?
+## How It Works & How It Gets Stronger Daily
 
-![ANTI-REA 개요](docs/assets/antirea-overview.svg)
+![ANTI-REA Overview](docs/assets/antirea-overview.svg)
 
-### 사용자 PC에서의 작동 흐름
-에이전트에게 보호를 요청하면 ANTI-REA는 다음 과정을 돕습니다:
-- **핵심 함수 너머의 주변 단서까지 탐색:** 핵심 함수 1개만 감춰두면 앞뒤 호출 코드나 상수를 보고 원래 로직을 유추하기 쉽습니다. LLVM 중간 코드(IR)의 호출 관계와 데이터를 따라가며 함께 숨겨야 할 주변 함수를 찾아냅니다.
-- **계획 확인 후 안전한 실행:** 에이전트가 임의로 바이너리를 덮어쓰지 못하도록, 입력 파일 해시와 실행 명령어를 먼저 계획(Plan)으로 고정하고 승인된 작업만 실행합니다.
-- **기능 보존 및 속도 비율 측정:** VM을 걸면 실행 속도에 오버헤드가 생길 수밖에 없습니다. 보호 후에도 원본과 똑같은 출력을 내는지 검사하고, 실행 속도가 기존의 몇 % 수준으로 돌아가는지(실행 시간·파일 크기 변화)를 측정해 알려줍니다.
+### On Your Machine
+- **Scope Beyond a Single Function:** Hiding just one function leaves callers and constants exposed. In the LLVM IR path, ANTI-REA traces call graphs and shared data to include surrounding functions that leak clues.
+- **Plan Before Execution:** Input hashes and commands are locked into a plan first so the agent never overwrites binaries unexpectedly.
+- **Behavior & Relative Speed Measurement:** VM protection inevitably adds overhead. ANTI-REA verifies that outputs match the original binary and measures what percentage of the original speed the protected binary achieves.
 
-### 저희가 매일 돌리는 실전 공방 루프
-저희는 "보호를 걸었으니 안전할 것이다"라고 짐작하지 않고, **방어 전담 환경과 외부 공격 환경(REA + Ghidra)을 분리해 매일 실전 공방 루프**를 돌리고 있습니다.
+### Our Daily Live Attack-Defense Loop
+We run a continuous loop between our **Defense Environment** and an **External Attack Environment (REA + Ghidra)**:
 
-1. **방어 빌드 및 검증 (방어 환경):** TestApp에 새로운 VM·난독화 기법을 입히고 수천 개의 입출력 테스트와 성능 기준을 통과하는지 확인합니다.
-2. **블라인드 공격 테스트 (외부 공격 환경):** 소스 코드나 비공개 테스트는 빼고 **보호된 EXE와 기본 입출력 설명**만 공격 환경에 넘깁니다. 공격 측 에이전트가 REA로 이 바이너리를 뜯어보고 재구현을 시도합니다.
-3. **약점 분석 및 다음 방어 반영:** 공격 리포트가 돌아오면 어떤 단서(상수 테이블, 핸들러 패턴, 보조 함수 등)가 노출되었는지 파악해 그 구멍을 막는 다음 세대 VM을 만듭니다.
+1. **Build & Verify (Defense Environment):** Apply new VM/obfuscation techniques to TestApp and verify 100% output equivalence and performance bounds across thousands of test cases.
+2. **Blind Attack Test (External Attack Environment):** Share only the **protected EXE and public I/O specification** (never source code or private tests). The attack environment uses REA to analyze and reimplement the binary.
+3. **Weakness Analysis & Next Defense:** Inspect the incoming attack report to see which clues leaked (constant tables, handler patterns, helper functions) and harden the next-generation VM against them.
 
 ---
 
-## 지원 엔진
+## Supported Engines
 
-기본 제공되는 무료·오픈소스 엔진(`Kagura + ANTI-REA 보강`)도 매일 강화되고 있지만, **당장 더 강력한 보호가 필요하다면 Themida, VMProtect, Code Virtualizer를 유료 구매해 연결한 뒤, ANTI-REA를 통해 어느 정도의 실행 성능과 어느 정도의 방어를 원하는지 에이전트에게 자연어로 말하기만 하면 됩니다.**
+While the built-in open-source engine (`Kagura + ANTI-REA Hardening`) grows stronger every day, **if you need even stronger protection right now, you can purchase Themida, VMProtect, or Code Virtualizer, connect it to ANTI-REA, and simply tell your agent in natural language what execution speed and defense level you want.**
 
 ```text
-VMProtect(또는 Themida / Code Virtualizer)를 사용해서 실행 속도는 기존의 80% 이상을 유지하면서 핵심 로직은 최대한 강하게 방어해줘.
+Use VMProtect (or Themida / Code Virtualizer) to keep execution speed above 80% of the original while defending the core logic as strongly as possible.
 ```
 
-| 엔진 | 연결 방식 | 현재 지원 상태 |
+| Engine | Connection | Current Status |
 |---|---|---|
-| **Kagura + ANTI-REA 보강** | C++/LLVM 빌드 및 방어 파이프라인 | 무료·오픈소스 기반. 실제 VM 적용, 기능·성능 자동 검사 및 일일 방어 강화 적용 중 |
-| **Themida** | 방어 MCP/CLI (`.tmd`/`.tm` 프로젝트) | 상용 프로텍터 연동 지원 (유료 구매 후 로컬 설치판 연결) |
-| **VMProtect** | 방어 MCP/CLI (`.vmp` 프로젝트) | 상용 프로텍터 연동 지원 (유료 구매 후 로컬 설치판 연결) |
-| **Code Virtualizer** | 방어 MCP/CLI (`.cv` 프로젝트) | 상용 프로텍터 연동 지원 (Legacy / v4 지원, 유료 구매 후 로컬 설치판 연결) |
+| **Kagura + ANTI-REA Hardening** | C++/LLVM build & defense pipeline | Active VM protection, automated verification, and daily defense hardening on Windows x86-64 C++ |
+| **Themida** | Defense MCP/CLI (`.tmd`/`.tm` project) | Windows native x86/x64 PE adapter implemented (requires local installation) |
+| **VMProtect** | Defense MCP/CLI (`.vmp` project) | Windows native x86/x64 PE adapter implemented (requires local installation) |
+| **Code Virtualizer** | Defense MCP/CLI (`.cv` project) | Windows native x86/x64 PE adapter implemented (Legacy / v4 supported, requires local installation) |
 
 ---
 
-## 개발 및 테스트
+## Development & Testing
 
-저장소 루트에서 아래 명령으로 전체 단위·경계 테스트를 실행할 수 있습니다.
+Run the unit and boundary test suite from the repository root:
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-실제 상용 프로텍터 연동 재현, 새로운 VM 난독화 아이디어, 일반 프로젝트 빌드 연결, macOS 지원 관련 기여를 환영합니다. 이 프로젝트는 [MIT License](LICENSE)로 배포됩니다. (연동하는 각 보호 엔진은 해당 도구의 고유 라이선스를 따릅니다.)
+Contributions for commercial protector verification, new VM obfuscation ideas, general project build integration, and macOS support are welcome. Distributed under the [MIT License](LICENSE) (connected third-party protection engines follow their own respective licenses).

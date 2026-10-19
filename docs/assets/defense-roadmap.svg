@@ -8,19 +8,19 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="220" rx="16" fill="#10161e"/>
-  <g font-family="Pretendard, 'Malgun Gothic', Inter, 'Segoe UI', Arial, sans-serif">
+  <g font-family="Inter, 'Segoe UI', Arial, sans-serif">
     <text x="40" y="42" fill="#8298aa" font-size="12" font-weight="600" letter-spacing="1.5">TESTAPP VM DEFENSE vs. REA</text>
-    <text x="40" y="76" fill="#edf5f8" font-size="22" font-weight="700">실제 REA 공격 대비 TestApp VM 방어력</text>
+    <text x="40" y="76" fill="#edf5f8" font-size="22" font-weight="700">TestApp VM Defense Strength vs. Live REA Attack</text>
     <text x="1160" y="35" fill="#8298aa" font-size="11" font-weight="600" letter-spacing="1.2" text-anchor="end">CURRENT DEFENSE</text>
     <text x="1160" y="78" fill="#a4f3d8" font-size="42" font-weight="700" text-anchor="end">25<tspan font-size="25">%</tspan></text>
     <rect x="40" y="103" width="1120" height="16" rx="8" fill="#24313e"/>
     <rect x="40" y="103" width="280" height="16" rx="8" fill="url(#progress)"/>
     <rect x="316" y="99" width="4" height="24" rx="2" fill="#c3ffe9"/>
     <path d="M320 103 V119 M600 103 V119 M880 103 V119" stroke="#10161e" stroke-width="4"/>
-    <text x="40" y="150" fill="#a4f3d8" font-size="12" font-weight="700">25% · 1차 정적 복원 저지</text>
-    <text x="336" y="150" fill="#8298aa" font-size="12" font-weight="600">50% · 정적 분석·문맥 추론 차단</text>
-    <text x="616" y="150" fill="#8298aa" font-size="12" font-weight="600">75% · 동적 추적·디버깅 방어</text>
-    <text x="896" y="150" fill="#8298aa" font-size="12" font-weight="600">100% · 실전 REA 장기 공격 방어</text>
-    <text x="40" y="188" fill="#a8b9c8" font-size="13">기본 VM이 뚫린 뒤 오퍼랜드 문맥·디스패처 보강을 거쳐, 현재 외부 REA 정적 분석의 핵심 수식 완전 복원을 막아낸 단계입니다.</text>
+    <text x="40" y="150" fill="#a4f3d8" font-size="12" font-weight="700">25% · Static Reconstruction Blocked</text>
+    <text x="336" y="150" fill="#8298aa" font-size="12" font-weight="600">50% · Context Inference Blocked</text>
+    <text x="616" y="150" fill="#8298aa" font-size="12" font-weight="600">75% · Dynamic Tracing Defense</text>
+    <text x="896" y="150" fill="#8298aa" font-size="12" font-weight="600">100% · Full Multi-Target Defense</text>
+    <text x="40" y="188" fill="#a8b9c8" font-size="13">Operand context &amp; dispatcher hardening now prevent external REA static analysis from reconstructing the core formula.</text>
   </g>
 </svg>
