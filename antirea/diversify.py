@@ -17,6 +17,14 @@ from pathlib import Path
 import random
 import re
 
+from .hardening import (
+    HARDENING_LAYERS,
+    compute_header_integrity_tag,
+    emit_llvm_ir_honeypot,
+    emit_runtime_hardening_helpers,
+    hardening_parameters,
+)
+
 
 PINNED_COMMIT = "ac2136ee0408677cf7cdee55307e9b16edd5f4d5"
 RUNTIME_SHA256 = "0b4040ce1354d59173a20f655e18919e40b6217af602db1f8c935cfb4c23fcca"
@@ -187,13 +195,16 @@ def fuse_chains(instructions: list[Instruction], targets: set[int]) -> list[Inst
     return result
 
 
-def parameters(seed: int, names: set[str]) -> dict:
+def parameters(seed: int, names: set[str], *, enable_hardening: bool = True) -> dict:
     rng = random.Random(seed)
     tokens = rng.sample(range(0x100, 0xffff), len(names))
-    return {"tokens": dict(zip(sorted(names), tokens)), "multiply": rng.getrandbits(32) | 1,
-            "add": rng.getrandbits(32), "mix": rng.getrandbits(32) | 1,
-            "rotate": rng.randrange(7), "header": [rng.randrange(256) for _ in range(3)],
-            "operand_multiply": rng.getrandbits(32) | 1, "operand_add": rng.getrandbits(32)}
+    result = {"tokens": dict(zip(sorted(names), tokens)), "multiply": rng.getrandbits(32) | 1,
+              "add": rng.getrandbits(32), "mix": rng.getrandbits(32) | 1,
+              "rotate": rng.randrange(7), "header": [rng.randrange(256) for _ in range(3)],
+              "operand_multiply": rng.getrandbits(32) | 1, "operand_add": rng.getrandbits(32)}
+    if enable_hardening:
+        result["hardening"] = hardening_parameters(seed)
+    return result
 
 
 def operand_context(position: int, token: int, key: int, params: dict) -> int:
@@ -282,7 +293,10 @@ def specialize_runtime(source: str, params: dict, symbol: str) -> str:
     source, count = re.subn(r"(?m)^(\s*)uint32_t pc;", r"\1uint32_t operand_state;\n\1uint32_t pc;", source, count=1)
     if count != 1:
         raise ValueError("Pinned runtime frame pc field not found")
-    fetch = f"""static __attribute__((always_inline)) inline uint8_t bc_raw8(VMFrame *f) {{
+    hardening_prelude = ""
+    if isinstance(params.get("hardening"), dict):
+        hardening_prelude = emit_runtime_hardening_helpers(params["hardening"]) + "\n"
+    fetch = hardening_prelude + f"""static __attribute__((always_inline)) inline uint8_t bc_raw8(VMFrame *f) {{
     uint32_t p=f->pc;
     if (__builtin_expect(p >= f->bc_size, 0)) abort();
     f->pc=p+1;
@@ -331,6 +345,11 @@ static __attribute__((always_inline)) inline uint64_t bc_u64(VMFrame *f) {{
         f"    if (bc_size<4 || bytecode[0]!=(uint8_t)(key^0xfeu) || bytecode[1]!={params['header'][0]}u"
         f" || bytecode[2]!={params['header'][1]}u || bytecode[3]!={params['header'][2]}u) abort();\n    VMFrame f;"))
     source = source.replace("f.pc      = 0;", "f.pc      = 4;")
+    if isinstance(params.get("hardening"), dict):
+        source = source.replace(
+            "f.key     = key;",
+            "f.key     = key ^ (uint64_t)antirea_env_and_tamper_guard(bytecode, bc_size, (uint32_t)key);",
+        )
     source = source.replace("uint8_t op = bc_u8(&f);", "uint16_t op = bc_opcode(&f);")
     loop = source.index("        switch (op) {")
     end = source.index("        default: abort();", loop)
@@ -357,7 +376,7 @@ static __attribute__((always_inline)) inline uint64_t bc_u64(VMFrame *f) {{
             " * the upstream descriptive comments. Not cryptographic secrecy. */\n" + source)
 
 
-def transform_ir(ir: str, table: dict[int, str], seed: int) -> tuple[str, dict]:
+def transform_ir(ir: str, table: dict[int, str], seed: int, *, enable_hardening: bool = True) -> tuple[str, dict]:
     blobs = list(re.finditer(r'^@(kagura_vm_bc_(\d+)) = private constant \[(\d+) x i8\] c"([^"\n]*)"', ir, re.M))
     if not blobs:
         raise ValueError("No supported Kagura bytecode globals")
@@ -375,7 +394,7 @@ def transform_ir(ir: str, table: dict[int, str], seed: int) -> tuple[str, dict]:
         fused = fuse(instructions)
         plans.append((match, data, key, instructions, fused))
     names = {item.name for _, _, _, _, items in plans for item in items}
-    params = parameters(seed, names)
+    params = parameters(seed, names, enable_hardening=enable_hardening)
     symbol = f"antirea_dispatch_{seed & 0xffffffffffffffff:016x}"
     records = []
     for match, data, key, instructions, fused in reversed(plans):
@@ -388,16 +407,23 @@ def transform_ir(ir: str, table: dict[int, str], seed: int) -> tuple[str, dict]:
         if calls != 1:
             raise ValueError("Each bytecode blob must have exactly one supported wrapper call")
         counts = Counter(item.name for item in fused if item.originals > 1)
-        records.append({"global": name, "original_bytes": len(data), "encoded_bytes": len(encoded),
-                        "original_instructions": len(instructions), "emitted_instructions": len(fused),
-                        "fused_groups": sum(counts.values()), "fusion_counts": dict(sorted(counts.items())),
-                        "absorbed_dispatches": sum(item.originals - 1 for item in fused),
-                        "original_sha256": sha256(data), "encoded_sha256": sha256(encoded),
-                        "relocated_branch_targets": sum(item.name in JUMPS for item in fused),
-                        "stock_first_opcode_after_original_xor": encoded[0] ^ (key & 255)})
+        blob_record = {"global": name, "original_bytes": len(data), "encoded_bytes": len(encoded),
+                       "original_instructions": len(instructions), "emitted_instructions": len(fused),
+                       "fused_groups": sum(counts.values()), "fusion_counts": dict(sorted(counts.items())),
+                       "absorbed_dispatches": sum(item.originals - 1 for item in fused),
+                       "original_sha256": sha256(data), "encoded_sha256": sha256(encoded),
+                       "relocated_branch_targets": sum(item.name in JUMPS for item in fused),
+                       "stock_first_opcode_after_original_xor": encoded[0] ^ (key & 255)}
+        if isinstance(params.get("hardening"), dict):
+            blob_record["header_integrity_tag"] = compute_header_integrity_tag(
+                encoded, params["hardening"]["tamper_seed"], params["hardening"]["tamper_prime"]
+            )
+        records.append(blob_record)
     if not any(record["fused_groups"] for record in records):
         raise ValueError("No meaningful fusion applied; refusing diversification claim")
     ir = ir.replace("@kagura_vm_execute", "@" + symbol)
+    if enable_hardening:
+        ir = ir.rstrip() + "\n" + emit_llvm_ir_honeypot(seed)
     manifest = {"schema_version": 1, "format_version": FORMAT_VERSION, "seed": seed,
                 "dispatcher_symbol": symbol, "parameters": params, "blobs": list(reversed(records)),
                 "opcode_bits": 16, "operand_byte_order": "big", "header_bytes": HEADER_SIZE,
@@ -407,6 +433,7 @@ def transform_ir(ir: str, table: dict[int, str], seed: int) -> tuple[str, dict]:
                 "operand_encoding": "instruction-position/opcode/key context with plaintext feedback; resets at every instruction",
                 "fetch_inlined_in_dispatcher": True,
                 "semantic_helpers_inlined_in_dispatcher": list(INTEGRATED_HELPERS),
+                "hardening_layers": list(HARDENING_LAYERS) if enable_hardening else [],
                 "external_attack_evaluation": "not_evaluated",
                 "limitations": ["Generated ISA and decoder remain present in the delivered executable.",
                                 "No cryptographic secrecy, anti-analysis guarantee or resistance result is claimed.",

@@ -696,6 +696,16 @@ class Service:
             "target_min_speed_percent": float(min_speed_percent),
             "functions": selected_functions,
             "function_modes": function_modes,
+            "hardening_features": [
+                "anti_debug",
+                "anti_tamper",
+                "mba_opaque",
+                "string_constant_encryption",
+                "iat_api_hiding",
+                "multi_vm_indirect_dispatch",
+                "anti_dump",
+                "anti_llm_honeypot",
+            ],
         }
 
     def benchmark(self, baseline_path, candidate_path, *, test_inputs=(), min_speed_percent=80,
@@ -935,7 +945,10 @@ def _render_vendor_project(provider: str, source: Path, architecture: str,
             '<?xml version="1.0" encoding="UTF-8"?>\n'
             f'<!-- ANTI-REA generated VMProtect project: defense_level={defense_level}, min_speed_percent={min_speed_percent}% -->\n'
             '<Document Version="2">\n'
-            f'  <Protection InputFileName="{source.name}" Options="858632">\n'
+            f'  <Protection InputFileName="{source.name}" Options="858632" '
+            'MemoryProtection="true" ImportProtection="true" ResourceProtection="true" '
+            'PackOutput="true" DebuggerDetection="UserMode+KernelMode" '
+            'VirtualizationToolsDetection="true" StripDebugInfo="true">\n'
             '    <Folders />\n'
             '    <Procedures>\n'
             f'{procs}\n'
@@ -946,15 +959,25 @@ def _render_vendor_project(provider: str, source: Path, architecture: str,
         )
         return xml, modes
     vm_arch = "64" if architecture == "x86_64" else "32"
-    vm_map = {
-        "ultra": (f"Fish{vm_arch}_Extreme", "100"),
-        "virtualization": (f"Tiger{vm_arch}_White", "65"),
-        "mutation": (f"Falcon{vm_arch}_Tiny", "20"),
-    }
-    entries = "\n".join(
-        f'    <Function Name="{fn}" Mode="{modes[fn]}" VirtualMachine="{vm_map[modes[fn]][0]}" Complexity="{vm_map[modes[fn]][1]}" />'
-        for fn in functions
+    multi_vm_pool = (
+        f"Tiger{vm_arch}_White",
+        f"Dolphin{vm_arch}_Black",
+        f"Eagle{vm_arch}_Red",
+        f"Shark{vm_arch}_Black",
     )
+    entries = []
+    for idx, fn in enumerate(functions):
+        mode = modes[fn]
+        if mode == "ultra":
+            vm_name, complexity = f"Fish{vm_arch}_Extreme", "100"
+        elif mode == "virtualization":
+            vm_name, complexity = multi_vm_pool[idx % len(multi_vm_pool)], "65"
+        else:
+            vm_name, complexity = f"Falcon{vm_arch}_Tiny", "20"
+        entries.append(
+            f'    <Function Name="{fn}" Mode="{mode}" VirtualMachine="{vm_name}" Complexity="{complexity}" />'
+        )
+    entries_xml = "\n".join(entries)
     tag_name = "ThemidaProject" if provider == "themida" else "CodeVirtualizerProject"
     xml = (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -962,8 +985,11 @@ def _render_vendor_project(provider: str, source: Path, architecture: str,
         f'<{tag_name} Version="1.0" Architecture="{architecture}" TargetMinSpeedPercent="{min_speed_percent}">\n'
         f'  <InputFile>{source.name}</InputFile>\n'
         f'  <DefenseProfile Level="{defense_level}" MinSpeedPercent="{min_speed_percent}" />\n'
+        '  <HardeningOptions AntiDebug="Ultra" AntiFrida="true" AntiTamperMemoryGuard="true" '
+        'AntiDumpHeaderErase="true" ImportProtectionIAT="true" StringConstantEncryption="true" '
+        'MultiVM="true" AntiLLMHoneypot="true" />\n'
         '  <ProtectedFunctions>\n'
-        f'{entries}\n'
+        f'{entries_xml}\n'
         '  </ProtectedFunctions>\n'
         f'</{tag_name}>\n'
     )
