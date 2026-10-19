@@ -341,23 +341,26 @@ static inline __attribute__((always_inline)) uint32_t antirea_env_and_tamper_gua
     uint32_t poison = 0u;
     /* Layer 1: Anti-Debugging (Direct PEB BeingDebugged read without IAT import) */
 #if defined(_WIN32) && defined(__x86_64__)
-    const uint8_t *peb = (const uint8_t *)__readgsqword(0x60);
+    unsigned long long __readgsqword(unsigned long);
+    const uint8_t *peb = (const uint8_t *)(uintptr_t)__readgsqword(0x60ul);
     if (peb && peb[2] != 0) {{
         poison ^= 0x{poison_salt:08x}u;
     }}
 #elif defined(_WIN32) && defined(__i386__)
-    const uint8_t *peb = (const uint8_t *)__readfsdword(0x30);
+    unsigned long __readfsdword(unsigned long);
+    const uint8_t *peb = (const uint8_t *)(uintptr_t)__readfsdword(0x30ul);
     if (peb && peb[2] != 0) {{
         poison ^= 0x{poison_salt:08x}u;
     }}
 #endif
-    /* Layer 2 & 5: Anti-Tampering / Anti-Dump bytecode & prologue invariant */
+    /* Layer 2, 3 & 5: Anti-Tampering / MBA / Anti-Dump bytecode & prologue invariant */
     if (!bc || bc_len < 4u) {{
         poison ^= 0x{tamper_seed:08x}u;
     }} else {{
         uint32_t hdr = (uint32_t)bc[0] | ((uint32_t)bc[1] << 8) | ((uint32_t)bc[2] << 16) | ((uint32_t)bc[3] << 24);
-        uint32_t op_zero = antirea_opaque_zero((uint64_t)hdr ^ (uint64_t)key ^ 0x{tamper_prime:08x}u);
-        poison ^= op_zero * 0x{dispatch_salt:08x}u;
+        uint64_t mba_check = antirea_mba_sub(antirea_mba_add((uint64_t)hdr, (uint64_t)key), (uint64_t)key) ^ (uint64_t)hdr;
+        uint32_t op_zero = antirea_opaque_zero(antirea_mba_xor((uint64_t)hdr, (uint64_t)key) ^ 0x{tamper_prime:08x}u);
+        poison ^= (op_zero | (uint32_t)mba_check) * 0x{dispatch_salt:08x}u;
     }}
     /* Layer 6: Anti-LLM Honeypot decoy call behind opaque never-taken branch */
     if (antirea_opaque_zero((uint64_t)bc_len ^ (uint64_t)key) != 0u) {{

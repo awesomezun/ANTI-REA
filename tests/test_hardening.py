@@ -90,7 +90,7 @@ class HardeningSuiteTests(unittest.TestCase):
         self.assertIn("antirea_honeypot_feistel", prelude)
         self.assertIn("antirea_mba_add", prelude)
         self.assertIn("antirea_opaque_zero", prelude)
-        self.assertIn("__readgsqword(0x60)", prelude)
+        self.assertIn("__readgsqword(0x60ul)", prelude)
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
