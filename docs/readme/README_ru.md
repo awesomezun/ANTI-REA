@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#roadmap)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#quick-start)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#quick-start)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 Инструменты реверс-инжиниринга вроде [REA](https://github.com/morluto/rea) позволяют агенту разобрать бинарный файл и в точности воссоздать исходную логику по одной фразе: *«Разберись, как работает эта функция в том приложении, и сделай так же в моём проекте»*.
@@ -75,7 +75,7 @@
 
 ## Поддерживаемые движки
 
-Встроенный открытый движок (`Kagura + ANTI-REA`) усиливается каждый день, но **если вам прямо сейчас нужна ещё более мощная защита, вы можете приобрести Themida, VMProtect или Code Virtualizer, подключить их к ANTI-REA и просто написать агенту на естественном языке, какую скорость работы и какой уровень защиты вы хотите получить.**
+Встроенный открытый движок (`ANTI-REA Engine`) усиливается каждый день, но **если вам прямо сейчас нужна ещё более мощная защита, вы можете приобрести Themida, VMProtect или Code Virtualizer, подключить их к ANTI-REA и просто написать агенту на естественном языке, какую скорость работы и какой уровень защиты вы хотите получить.**
 
 ```text
 Используй VMProtect (или Themida / Code Virtualizer), чтобы сохранить скорость выполнения не ниже 80% от исходной и при этом максимально защитить ключевую логику.
@@ -83,7 +83,7 @@
 
 | Engine | Connection | Status |
 |---|---|---|
-| **Kagura + ANTI-REA** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
+| **ANTI-REA Engine** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
 | **Themida** | Defense MCP/CLI (`.tmd`/`.tm`) | Windows native x86/x64 PE adapter implemented |
 | **VMProtect** | Defense MCP/CLI (`.vmp`) | Windows native x86/x64 PE adapter implemented |
 | **Code Virtualizer** | Defense MCP/CLI (`.cv`) | Windows native x86/x64 PE adapter implemented |

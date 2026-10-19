@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#roadmap)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#quick-start)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#quick-start)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 Alat rekayasa balik (reverse engineering) seperti [REA](https://github.com/morluto/rea) memungkinkan agen membongkar file biner dan menulis ulang logika aslinya secara persis saat Anda meminta: *"Pahami cara kerja fitur ini di aplikasi tersebut dan buatkan yang serupa di proyek saya"*.
@@ -75,7 +75,7 @@ Buat rencana proteksi VMProtect untuk app.exe terlebih dahulu, tunjukkan kepada 
 
 ## Mesin Pelindung yang Didukung
 
-Meskipun mesin open-source bawaan (`Kagura + ANTI-REA`) makin kuat setiap hari, **jika Anda membutuhkan perlindungan yang lebih kuat saat ini juga, Anda dapat membeli Themida, VMProtect, atau Code Virtualizer, menghubungkannya ke ANTI-REA, lalu cukup tuliskan dalam bahasa alami kepada agen Anda seberapa besar performa eksekusi dan tingkat pertahanan yang Anda inginkan.**
+Meskipun mesin open-source bawaan (`ANTI-REA Engine`) makin kuat setiap hari, **jika Anda membutuhkan perlindungan yang lebih kuat saat ini juga, Anda dapat membeli Themida, VMProtect, atau Code Virtualizer, menghubungkannya ke ANTI-REA, lalu cukup tuliskan dalam bahasa alami kepada agen Anda seberapa besar performa eksekusi dan tingkat pertahanan yang Anda inginkan.**
 
 ```text
 Gunakan VMProtect (atau Themida / Code Virtualizer) dengan menjaga kecepatan eksekusi di atas 80% dari aslinya sambil melindungi logika inti sekuat mungkin.
@@ -83,7 +83,7 @@ Gunakan VMProtect (atau Themida / Code Virtualizer) dengan menjaga kecepatan eks
 
 | Engine | Connection | Status |
 |---|---|---|
-| **Kagura + ANTI-REA** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
+| **ANTI-REA Engine** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
 | **Themida** | Defense MCP/CLI (`.tmd`/`.tm`) | Windows native x86/x64 PE adapter implemented |
 | **VMProtect** | Defense MCP/CLI (`.vmp`) | Windows native x86/x64 PE adapter implemented |
 | **Code Virtualizer** | Defense MCP/CLI (`.cv`) | Windows native x86/x64 PE adapter implemented |

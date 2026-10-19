@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#当前防御力与路线图-testapp-vm-vs-真实-rea-攻击)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#快速开始)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#快速开始)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#支持的引擎)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#支持的引擎)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 像 [REA](https://github.com/morluto/rea) 这样的逆向工程工具，只要你对智能体说*“分析一下那个应用里的这个功能是怎么工作的，并在我的项目里照着做一个”*，它就会拆解二进制文件并原样重写核心逻辑。
@@ -80,7 +80,7 @@
 
 ## 支持的引擎
 
-虽然内置的免费开源引擎（`Kagura + ANTI-REA 加固`）每天都在变强，但**如果你眼下就需要更强的保护，可以购买商业版 Themida、VMProtect 或 Code Virtualizer 并接入 ANTI-REA，然后直接用自然语言告诉智能体你期望的运行性能（速度保持率）和防御强度即可。**
+虽然内置的免费开源引擎（`ANTI-REA Engine`）每天都在变强，但**如果你眼下就需要更强的保护，可以购买商业版 Themida、VMProtect 或 Code Virtualizer 并接入 ANTI-REA，然后直接用自然语言告诉智能体你期望的运行性能（速度保持率）和防御强度即可。**
 
 ```text
 使用 VMProtect（或 Themida / Code Virtualizer），在保持运行速度不低于原版 80% 的同时，尽可能高强度地保护核心逻辑。
@@ -88,7 +88,7 @@
 
 | 引擎 | 连接方式 | 当前状态 |
 |---|---|---|
-| **Kagura + ANTI-REA 加固** | C++/LLVM 构建与防御流水线 | 已在 Windows x86-64 C++ 样本上应用真实 VM、自动检验功能与性能，并每日迭代加固 |
+| **ANTI-REA Engine** | C++/LLVM 构建与防御流水线 | 已在 Windows x86-64 C++ 样本上应用真实 VM、自动检验功能与性能，并每日迭代加固 |
 | **Themida** | 防御 MCP/CLI（`.tmd`/`.tm`） | Windows 原生 x86/x64 PE 适配器已实现（需本地安装商业版） |
 | **VMProtect** | 防御 MCP/CLI（`.vmp`） | Windows 原生 x86/x64 PE 适配器已实现（需本地安装商业版） |
 | **Code Virtualizer** | 防御 MCP/CLI（`.cv`） | Windows 原生 x86/x64 PE 适配器已实现（支持 Legacy / v4，需本地安装） |

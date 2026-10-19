@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#roadmap)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#quick-start)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#quick-start)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 Herramientas de ingeniería inversa como [REA](https://github.com/morluto/rea) permiten que un agente inspeccione un binario y reimplemente su lógica exacta cuando le pides: *«Analiza cómo funciona esta característica en esa aplicación y crea una igual en mi proyecto»*.
@@ -75,7 +75,7 @@ Crea primero un plan de protección con VMProtect para app.exe, muéstramelo y e
 
 ## Motores compatibles
 
-Aunque el motor de código abierto incluido (`Kagura + ANTI-REA`) mejora cada día, **si necesitas una protección aún más fuerte ahora mismo, puedes adquirir Themida, VMProtect o Code Virtualizer, conectarlo a ANTI-REA y simplemente escribirle a tu agente en lenguaje natural qué rendimiento de ejecución y qué nivel de defensa deseas.**
+Aunque el motor de código abierto incluido (`ANTI-REA Engine`) mejora cada día, **si necesitas una protección aún más fuerte ahora mismo, puedes adquirir Themida, VMProtect o Code Virtualizer, conectarlo a ANTI-REA y simplemente escribirle a tu agente en lenguaje natural qué rendimiento de ejecución y qué nivel de defensa deseas.**
 
 ```text
 Usa VMProtect (o Themida / Code Virtualizer) manteniendo al menos el 80 % de la velocidad original mientras defiendes la lógica central al máximo.
@@ -83,7 +83,7 @@ Usa VMProtect (o Themida / Code Virtualizer) manteniendo al menos el 80 % de la 
 
 | Engine | Connection | Status |
 |---|---|---|
-| **Kagura + ANTI-REA** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
+| **ANTI-REA Engine** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
 | **Themida** | Defense MCP/CLI (`.tmd`/`.tm`) | Windows native x86/x64 PE adapter implemented |
 | **VMProtect** | Defense MCP/CLI (`.vmp`) | Windows native x86/x64 PE adapter implemented |
 | **Code Virtualizer** | Defense MCP/CLI (`.cv`) | Windows native x86/x64 PE adapter implemented |

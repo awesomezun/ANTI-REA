@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#roadmap)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#quick-start)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#quick-start)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 [REA](https://github.com/morluto/rea) പോലുള്ള റിവേഴ്സ് എഞ്ചിനീയറിംഗ് ടൂളുകൾ, *"ആ ആപ്പിലെ ഈ ഫീച്ചർ എങ്ങനെ പ്രവർത്തിക്കുന്നുവെന്ന് മനസ്സിലാക്കി എന്റെ പ്രോജക്റ്റിൽ അതുപോലൊന്ന് നിർമ്മിക്കുക"* എന്ന് ഏജന്റിനോട് ആവശ്യപ്പെട്ടാൽ ഉടൻ തന്നെ ബൈനറി പരിശോധിച്ച് യഥാർത്ഥ ലോജിക് 그대로 പുനർനിർമ്മിക്കുന്നു.
@@ -75,7 +75,7 @@ ANTI-REA ലോക്കൽ Python വെർച്വൽ എൻവയോൺമ�
 
 ## പിന്തുണയ്ക്കുന്ന എഞ്ചിനുകൾ
 
-ഇൻ-ബിൽറ്റ് ഓപ്പൺ സോഴ്സ് എഞ്ചിൻ (`Kagura + ANTI-REA`) প্রতিদিন ശക്തമാകുന്നുണ്ടെങ്കിലും, **നിങ്ങൾക്ക് ഇപ്പോൾ തന്നെ കൂടുതൽ ശക്തമായ സംരക്ഷണം വേണമെങ്കിൽ Themida, VMProtect, അല്ലെങ്കിൽ Code Virtualizer വാങ്ങി ANTI-REA-യുമായി ബന്ധിപ്പിച്ച ശേഷം, നിങ്ങൾക്ക് എത്രത്തോളം പ്രവർത്തന വേഗതയും പ്രതിരോധവുമാണ് വേണ്ടതെന്ന് സ്വാഭാവിക ഭാഷയിൽ ഏജന്റിനോട് പറഞ്ഞാൽ മതി.**
+ഇൻ-ബിൽറ്റ് ഓപ്പൺ സോഴ്സ് എഞ്ചിൻ (`ANTI-REA Engine`) প্রতিদিন ശക്തമാകുന്നുണ്ടെങ്കിലും, **നിങ്ങൾക്ക് ഇപ്പോൾ തന്നെ കൂടുതൽ ശക്തമായ സംരക്ഷണം വേണമെങ്കിൽ Themida, VMProtect, അല്ലെങ്കിൽ Code Virtualizer വാങ്ങി ANTI-REA-യുമായി ബന്ധിപ്പിച്ച ശേഷം, നിങ്ങൾക്ക് എത്രത്തോളം പ്രവർത്തന വേഗതയും പ്രതിരോധവുമാണ് വേണ്ടതെന്ന് സ്വാഭാവിക ഭാഷയിൽ ഏജന്റിനോട് പറഞ്ഞാൽ മതി.**
 
 ```text
 യഥാർത്ഥ വേഗതയുടെ 80%-ൽ കൂടുതൽ നിലനിർത്തിക്കൊണ്ട് പ്രധാന ലോജിക് പരമാവധി ശക്തമായി സംരക്ഷിക്കാൻ VMProtect (അല്ലെങ്കിൽ Themida / Code Virtualizer) ഉപയോഗിക്കുക.
@@ -83,7 +83,7 @@ ANTI-REA ലോക്കൽ Python വെർച്വൽ എൻവയോൺമ�
 
 | Engine | Connection | Status |
 |---|---|---|
-| **Kagura + ANTI-REA** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
+| **ANTI-REA Engine** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
 | **Themida** | Defense MCP/CLI (`.tmd`/`.tm`) | Windows native x86/x64 PE adapter implemented |
 | **VMProtect** | Defense MCP/CLI (`.vmp`) | Windows native x86/x64 PE adapter implemented |
 | **Code Virtualizer** | Defense MCP/CLI (`.cv`) | Windows native x86/x64 PE adapter implemented |

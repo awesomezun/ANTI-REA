@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#roadmap)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#quick-start)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#quick-start)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 Reverse-Engineering-Tools wie [REA](https://github.com/morluto/rea) ermöglichen es einem Agenten, eine Binärdatei zu zerlegen und die ursprüngliche Logik exakt nachzubauen, sobald man sagt: *„Analysiere, wie diese Funktion in jener App funktioniert, und baue sie für mein Projekt nach.“*
@@ -75,7 +75,7 @@ Erstelle zuerst einen VMProtect-Schutzplan für app.exe, zeige ihn mir und führ
 
 ## Unterstützte Engines
 
-Während die integrierte Open-Source-Engine (`Kagura + ANTI-REA`) täglich stärker wird, **können Sie – falls Sie sofort noch stärkeren Schutz benötigen – Themida, VMProtect oder Code Virtualizer erwerben, anbinden und Ihrem Agenten über ANTI-REA einfach in natürlicher Sprache mitteilen, welche Ausführungsgeschwindigkeit und welches Schutzniveau Sie wünschen.**
+Während die integrierte Open-Source-Engine (`ANTI-REA Engine`) täglich stärker wird, **können Sie – falls Sie sofort noch stärkeren Schutz benötigen – Themida, VMProtect oder Code Virtualizer erwerben, anbinden und Ihrem Agenten über ANTI-REA einfach in natürlicher Sprache mitteilen, welche Ausführungsgeschwindigkeit und welches Schutzniveau Sie wünschen.**
 
 ```text
 Verwende VMProtect (oder Themida / Code Virtualizer), um die Ausführungsgeschwindigkeit bei mindestens 80 % des Originals zu halten und gleichzeitig die Kernlogik maximal zu schützen.
@@ -83,7 +83,7 @@ Verwende VMProtect (oder Themida / Code Virtualizer), um die Ausführungsgeschwi
 
 | Engine | Connection | Status |
 |---|---|---|
-| **Kagura + ANTI-REA** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
+| **ANTI-REA Engine** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
 | **Themida** | Defense MCP/CLI (`.tmd`/`.tm`) | Windows native x86/x64 PE adapter implemented |
 | **VMProtect** | Defense MCP/CLI (`.vmp`) | Windows native x86/x64 PE adapter implemented |
 | **Code Virtualizer** | Defense MCP/CLI (`.cv`) | Windows native x86/x64 PE adapter implemented |

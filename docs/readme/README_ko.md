@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#현재-방어력-및-로드맵-testapp-vm-vs-실제-rea-공격)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#빠른-시작)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#빠른-시작)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#지원-엔진)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#지원-엔진)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 [REA](https://github.com/morluto/rea) 같은 리버스 엔지니어링 도구는 에이전트에게 *"저 앱의 이 기능이 어떻게 돌아가는지 분석해서 내 프로젝트에 똑같이 만들어줘"*라고 시키면 바이너리를 뜯어보고 원래 로직을 그대로 재구현해냅니다.
@@ -93,7 +93,7 @@ app.exe에 VMProtect로 보호 적용 계획을 먼저 세워서 보여주고, �
 
 ## 지원 엔진
 
-기본 제공되는 무료·오픈소스 엔진(`Kagura + ANTI-REA 보강`)도 매일 강화되고 있지만, **당장 더 강력한 보호가 필요하다면 Themida, VMProtect, Code Virtualizer를 유료 구매해 연결한 뒤, ANTI-REA를 통해 어느 정도의 실행 성능과 어느 정도의 방어를 원하는지 에이전트에게 자연어로 말하기만 하면 됩니다.**
+기본 내장된 무료·오픈소스 자체 엔진(**`ANTI-REA Engine`** — 16비트 다형성 레지스터 융합 VM, 무분기 키 오염 안티 디버깅, 헤더 무결성 키 바인딩 안티 탬퍼링, 다형성 MBA·불투명 술어, 상수 풀 스트림 암호화·IAT 해시 은닉, AI/LLM 역공학 교란용 허니팟 내장)도 매일 강화되고 있지만, **당장 더 강력한 보호가 필요하다면 Themida, VMProtect, Code Virtualizer를 유료 구매해 연결한 뒤, ANTI-REA를 통해 어느 정도의 실행 성능과 어느 정도의 방어를 원하는지 에이전트에게 자연어로 말하기만 하면 됩니다.**
 
 ```text
 VMProtect(또는 Themida / Code Virtualizer)를 사용해서 실행 속도는 기존의 80% 이상을 유지하면서 핵심 로직은 최대한 강하게 방어해줘.
@@ -101,10 +101,10 @@ VMProtect(또는 Themida / Code Virtualizer)를 사용해서 실행 속도는 �
 
 | 엔진 | 연결 방식 | 현재 지원 상태 |
 |---|---|---|
-| **Kagura + ANTI-REA 보강** | C++/LLVM 빌드 및 방어 파이프라인 | 무료·오픈소스 기반. 실제 VM 적용, 기능·성능 자동 검사 및 일일 방어 강화 적용 중 |
+| **ANTI-REA Engine** | 자체 C++/LLVM 다형성 VM 및 6계층 하드닝 파이프라인 | 무료·오픈소스 자체 엔진. 레지스터 융합 VM, 안티 디버깅/탬퍼링 키 오염, MBA/불투명 술어, AI 교란 허니팟, 기능·성능 자동 검사 지원 |
 | **Themida** | 방어 MCP/CLI (`.tmd`/`.tm` 프로젝트) | 상용 프로텍터 연동 지원 (유료 구매 후 로컬 설치판 연결) |
 | **VMProtect** | 방어 MCP/CLI (`.vmp` 프로젝트) | 상용 프로텍터 연동 지원 (유료 구매 후 로컬 설치판 연결) |
-| **Code Virtualizer** | 방어 MCP/CLI (`.cv` 프로젝트) | 상용 프로텍터 연동 지원 (Legacy / v4 지원, 유료 구매 후 로컬 설치판 연결) |
+| **Code Virtualizer** | 방어 MCP/CLI (`.cv` project) | 상용 프로텍터 연동 지원 (Legacy / v4 지원, 유료 구매 후 로컬 설치판 연결) |
 
 ---
 
@@ -116,4 +116,4 @@ VMProtect(또는 Themida / Code Virtualizer)를 사용해서 실행 속도는 �
 python -m unittest discover -s tests -v
 ```
 
-실제 상용 프로텍터 연동 재현, 새로운 VM 난독화 아이디어, 일반 프로젝트 빌드 연결, macOS 지원 관련 기여를 환영합니다. 이 프로젝트는 [MIT License](../../LICENSE)로 배포됩니다. (연동하는 각 보호 엔진은 해당 도구의 고유 라이선스를 따릅니다.)
+실제 상용 프로텍터 연동 재현, 새로운 VM 난독화 아이디어, 일반 프로젝트 빌드 연결, macOS 지원 관련 기여를 환영합니다. 이 프로젝트는 [MIT License](../../LICENSE)로 배포됩니다. (연동하는 각 보호 엔진은 해당 도구의 고유 라이선스를 따르며, 초기 LLVM 패스 파이프라인 일부는 MIT 라이선스의 오픈소스 Kagura에서 파생되었습니다.)

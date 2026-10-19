@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#roadmap)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#quick-start)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#quick-start)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 Les outils de rétro-ingénierie comme [REA](https://github.com/morluto/rea) permettent à un agent d'inspecter un binaire et d'en réimplémenter la logique exacte dès que vous demandez : *« Analyse comment fonctionne cette fonctionnalité dans cette application et reproduis-la dans mon projet »*.
@@ -75,7 +75,7 @@ Prépare d'abord un plan de protection VMProtect pour app.exe, montre-le-moi et 
 
 ## Moteurs pris en charge
 
-Bien que le moteur open-source intégré (`Kagura + ANTI-REA`) se renforce chaque jour, **si vous avez besoin d'une protection encore plus poussée dès maintenant, vous pouvez acheter Themida, VMProtect ou Code Virtualizer, le connecter à ANTI-REA et simplement indiquer en langage naturel à votre agent le niveau de performance et de défense souhaité.**
+Bien que le moteur open-source intégré (`ANTI-REA Engine`) se renforce chaque jour, **si vous avez besoin d'une protection encore plus poussée dès maintenant, vous pouvez acheter Themida, VMProtect ou Code Virtualizer, le connecter à ANTI-REA et simplement indiquer en langage naturel à votre agent le niveau de performance et de défense souhaité.**
 
 ```text
 Utilise VMProtect (ou Themida / Code Virtualizer) pour conserver au moins 80 % de la vitesse d'exécution initiale tout en protégeant au maximum la logique cœur.
@@ -83,7 +83,7 @@ Utilise VMProtect (ou Themida / Code Virtualizer) pour conserver au moins 80 % d
 
 | Engine | Connection | Status |
 |---|---|---|
-| **Kagura + ANTI-REA** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
+| **ANTI-REA Engine** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
 | **Themida** | Defense MCP/CLI (`.tmd`/`.tm`) | Windows native x86/x64 PE adapter implemented |
 | **VMProtect** | Defense MCP/CLI (`.vmp`) | Windows native x86/x64 PE adapter implemented |
 | **Code Virtualizer** | Defense MCP/CLI (`.cv`) | Windows native x86/x64 PE adapter implemented |

@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#roadmap)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#quick-start)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#quick-start)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#engines)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 เครื่องมือวิศวกรรมย้อนกลับอย่าง [REA](https://github.com/morluto/rea) ช่วยให้เอเจนต์แกะไฟล์ไบนารีและเขียนลอจิกเดิมขึ้นมาใหม่ได้ทันทีเพียงสั่งว่า *"วิเคราะห์ว่าฟีเจอร์นี้ในแอปนั้นทำงานอย่างไร แล้วสร้างแบบเดียวกันในโปรเจกต์ของฉัน"*
@@ -75,7 +75,7 @@
 
 ## เอนจินที่รองรับ
 
-แม้เอนจินโอเพนซอร์สในตัว (`Kagura + ANTI-REA`) จะแข็งแกร่งขึ้นทุกวัน **แต่หากคุณต้องการการปกป้องที่แข็งแกร่งยิ่งขึ้นในทันที คุณสามารถซื้อ Themida, VMProtect หรือ Code Virtualizer มาเชื่อมต่อ แล้วสั่งเอเจนต์ผ่าน ANTI-REA ด้วยภาษาธรรมชาติได้เลยว่าต้องการประสิทธิภาพการทำงานและระดับการป้องกันมากน้อยเพียงใด**
+แม้เอนจินโอเพนซอร์สในตัว (`ANTI-REA Engine`) จะแข็งแกร่งขึ้นทุกวัน **แต่หากคุณต้องการการปกป้องที่แข็งแกร่งยิ่งขึ้นในทันที คุณสามารถซื้อ Themida, VMProtect หรือ Code Virtualizer มาเชื่อมต่อ แล้วสั่งเอเจนต์ผ่าน ANTI-REA ด้วยภาษาธรรมชาติได้เลยว่าต้องการประสิทธิภาพการทำงานและระดับการป้องกันมากน้อยเพียงใด**
 
 ```text
 ใช้ VMProtect (หรือ Themida / Code Virtualizer) เพื่อรักษาความเร็วในการทำงานให้ได้มากกว่า 80% ของของเดิม พร้อมทั้งป้องกันลอจิกหลักให้แน่นหนาที่สุด
@@ -83,7 +83,7 @@
 
 | Engine | Connection | Status |
 |---|---|---|
-| **Kagura + ANTI-REA** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
+| **ANTI-REA Engine** | C++/LLVM defense pipeline | Active VM protection, automated verification & daily hardening (Windows x86-64) |
 | **Themida** | Defense MCP/CLI (`.tmd`/`.tm`) | Windows native x86/x64 PE adapter implemented |
 | **VMProtect** | Defense MCP/CLI (`.vmp`) | Windows native x86/x64 PE adapter implemented |
 | **Code Virtualizer** | Defense MCP/CLI (`.cv`) | Windows native x86/x64 PE adapter implemented |

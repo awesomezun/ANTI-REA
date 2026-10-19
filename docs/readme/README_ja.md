@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#現在の防御力とロードマップ-testapp-vm-vs-実際のrea攻撃)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#クイックスタート)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#クイックスタート)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#対応エンジン)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#対応エンジン)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](../../LICENSE)
 
 [REA](https://github.com/morluto/rea)のようなリバースエンジニアリングツールは、エージェントに*「あのアプリのこの機能がどう動いているか解析して、自分のプロジェクトに同じものを作って」*と頼むだけで、バイナリを解析して元のロジックをそのまま再実装してしまいます。
@@ -83,7 +83,7 @@ app.exeにVMProtectで保護計画を先に立てて見せて。承認したら�
 
 ## 対応エンジン
 
-標準搭載の無料・オープンソースエンジン（`Kagura + ANTI-REA 補強`）も毎日強化されていますが、**今すぐさらに強力な保護が必要な場合は、Themida、VMProtect、Code Virtualizerを有料で購入して接続し、ANTI-REAを通じて「どの程度の実行性能（速度維持率）とどの程度の防御強度を望むか」を自然言語でエージェントに伝えるだけで使えます。**
+標準搭載の無料・オープンソースエンジン（`ANTI-REA Engine 補強`）も毎日強化されていますが、**今すぐさらに強力な保護が必要な場合は、Themida、VMProtect、Code Virtualizerを有料で購入して接続し、ANTI-REAを通じて「どの程度の実行性能（速度維持率）とどの程度の防御強度を望むか」を自然言語でエージェントに伝えるだけで使えます。**
 
 ```text
 VMProtect（または Themida / Code Virtualizer）を使って、実行速度は元の80%以上を維持しつつ、コアロジックを最大限強く防御して。
@@ -91,7 +91,7 @@ VMProtect（または Themida / Code Virtualizer）を使って、実行速度�
 
 | エンジン | 接続方式 | 現在の対応状況 |
 |---|---|---|
-| **Kagura + ANTI-REA 補強** | C++/LLVMビルドおよび防御パイプライン | Windows x86-64 C++サンプルへのVM適用、機能・性能自動検査、毎日の防御強化を適用中 |
+| **ANTI-REA Engine 補強** | C++/LLVMビルドおよび防御パイプライン | Windows x86-64 C++サンプルへのVM適用、機能・性能自動検査、毎日の防御強化を適用中 |
 | **Themida** | 防御MCP/CLI（`.tmd`/`.tm`） | Windowsネイティブ x86/x64 PEアダプタ実装済み（ローカル環境へのインストールが必要） |
 | **VMProtect** | 防御MCP/CLI（`.vmp`） | Windowsネイティブ x86/x64 PEアダプタ実装済み（ローカル環境へのインストールが必要） |
 | **Code Virtualizer** | 防御MCP/CLI（`.cv`） | Windowsネイティブ x86/x64 PEアダプタ実装済み（Legacy / v4対応、ローカルインストールが必要） |

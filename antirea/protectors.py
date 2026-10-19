@@ -783,7 +783,8 @@ class Service:
 
     def auto_protect(self, provider, input_path, *, functions=(), defense_level="max_vm",
                      min_speed_percent=80, test_inputs=(), timeout_seconds=600):
-        if provider not in (*PROVIDERS, "kagura"):
+        builtin_ids = ("antirea", "antirea_engine", "kagura")
+        if provider not in (*PROVIDERS, *builtin_ids):
             raise ProtectorError("unknown provider")
         if defense_level not in DEFENSE_LEVELS:
             raise ProtectorError("defense_level must be one of: " + ", ".join(DEFENSE_LEVELS))
@@ -792,15 +793,15 @@ class Service:
         source = self._owned_or_relative(input_path)
         source_bytes = _read(source)
         architecture = _pe(source_bytes)
-        if provider == "kagura":
+        if provider in builtin_ids:
             candidate = self._locate_kagura_candidate(source)
             bench = self.benchmark(source, candidate, test_inputs=test_inputs,
                                    min_speed_percent=min_speed_percent, repeats=3)
             return {
                 "schema_version": 1,
                 "status": "completed" if bench["functional_match"] else "failed",
-                "provider": "kagura",
-                "engine": "Kagura + ANTI-REA Hardening",
+                "provider": provider,
+                "engine": "ANTI-REA Engine",
                 "defense_level": defense_level,
                 "target_min_speed_percent": float(min_speed_percent),
                 "input_path": str(source),

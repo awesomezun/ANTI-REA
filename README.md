@@ -9,7 +9,7 @@
 [![Defense vs REA](https://img.shields.io/badge/Defense_vs_REA-25%25-4bbd9c?style=flat-square)](#current-defense--roadmap-testapp-vm-vs-live-rea-attacks)
 [![MCP + CLI](https://img.shields.io/badge/MCP-stdio_%2B_CLI-5c4ee5?style=flat-square)](#quick-start)
 [![Python requirements](https://img.shields.io/badge/Python-3.11+-3776ab?style=flat-square&logo=python&logoColor=white)](#quick-start)
-[![Engines](https://img.shields.io/badge/Engines-Kagura_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#supported-engines)
+[![Engines](https://img.shields.io/badge/Engines-ANTI--REA_Engine_%7C_VMP_%7C_Themida_%7C_CV-cb3837?style=flat-square)](#supported-engines)
 [![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](LICENSE)
 
 Reverse-engineering tools like [REA](https://github.com/morluto/rea) let an agent inspect a binary when you ask *"Understand how this feature works in that app and build a copy for my project."*
@@ -92,7 +92,7 @@ We run a continuous loop between our **Defense Environment** and an **External A
 
 ## Supported Engines
 
-While the built-in open-source engine (`Kagura + ANTI-REA Hardening`) grows stronger every day, **if you need even stronger protection right now, you can purchase Themida, VMProtect, or Code Virtualizer, connect it to ANTI-REA, and simply tell your agent in natural language what execution speed and defense level you want.**
+While the built-in open-source **`ANTI-REA Engine`** grows stronger every day (combining a 16-bit polymorphic register-fused VM, silent anti-debug key poisoning, anti-tamper hash-to-key binding, MBA & opaque predicates, encrypted constant pools + IAT hiding, and anti-LLM honeypot decoys), **if you need even stronger protection right now, you can purchase Themida, VMProtect, or Code Virtualizer, connect it to ANTI-REA, and simply tell your agent in natural language what execution speed and defense level you want.**
 
 ```text
 Use VMProtect (or Themida / Code Virtualizer) to keep execution speed above 80% of the original while defending the core logic as strongly as possible.
@@ -100,7 +100,7 @@ Use VMProtect (or Themida / Code Virtualizer) to keep execution speed above 80% 
 
 | Engine | Connection | Current Status |
 |---|---|---|
-| **Kagura + ANTI-REA Hardening** | C++/LLVM build & defense pipeline | Active VM protection, automated verification, and daily defense hardening on Windows x86-64 C++ |
+| **ANTI-REA Engine** | Built-in C++/LLVM VM & 6-layer hardening pipeline | Active polymorphic VM protection, silent anti-debug/anti-tamper key poisoning, MBA/opaque predicates, anti-LLM honeypots, and automated verification on Windows x86-64 C++ |
 | **Themida** | Defense MCP/CLI (`.tmd`/`.tm` project) | Windows native x86/x64 PE adapter implemented (requires local installation) |
 | **VMProtect** | Defense MCP/CLI (`.vmp` project) | Windows native x86/x64 PE adapter implemented (requires local installation) |
 | **Code Virtualizer** | Defense MCP/CLI (`.cv` project) | Windows native x86/x64 PE adapter implemented (Legacy / v4 supported, requires local installation) |
@@ -115,4 +115,4 @@ Run the unit and boundary test suite from the repository root:
 python -m unittest discover -s tests -v
 ```
 
-Contributions for commercial protector verification, new VM obfuscation ideas, general project build integration, and macOS support are welcome. Distributed under the [MIT License](LICENSE) (connected third-party protection engines follow their own respective licenses).
+Contributions for commercial protector verification, new VM obfuscation ideas, general project build integration, and macOS support are welcome. Distributed under the [MIT License](LICENSE) (connected third-party protection engines follow their own respective licenses; initial LLVM pass pipeline includes components derived from open-source Kagura under MIT).

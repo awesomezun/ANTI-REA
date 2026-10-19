@@ -15,7 +15,7 @@ SUPPORTED_PROTOCOLS = ("2024-11-05", "2025-03-26", "2025-06-18", "2025-11-25")
 MAX_REQUEST_BYTES = 256 * 1024
 MAX_RESPONSE_BYTES = 2 * 1024 * 1024
 PROVIDER_IDS = ("themida", "vmprotect", "code_virtualizer")
-AUTO_PROVIDER_IDS = (*PROVIDER_IDS, "kagura")
+AUTO_PROVIDER_IDS = (*PROVIDER_IDS, "antirea", "antirea_engine", "kagura")
 DEFENSE_LEVEL_IDS = ("mutation", "balanced", "max_vm")
 FAILURE_STATUSES = {"error", "failed", "blocked", "cancelled", "timeout", "timed_out",
                     "rejected", "interrupted", "original_input_changed", "vendor_failed", "cleanup_unverified"}
@@ -64,7 +64,7 @@ TOOLS = [
                            "timeout_seconds": {"type": "integer", "minimum": 1, "maximum": 600}},
                           ("baseline_path", "candidate_path")),
      "annotations": {"readOnlyHint": True, "openWorldHint": False}},
-    {"name": "protection_auto_protect", "description": "Natural-language protection workflow: generate vendor project (or use kagura), protect binary, benchmark functional match and speed_percent, and automatically step down defense_level if speed falls below min_speed_percent.",
+    {"name": "protection_auto_protect", "description": "Natural-language protection workflow: generate vendor project (or use the built-in ANTI-REA Engine), protect binary, benchmark functional match and speed_percent, and automatically step down defense_level if speed falls below min_speed_percent.",
      "inputSchema": schema({"provider": AUTO_PROVIDER, "input_path": TEXT, "functions": FUNCTION_LIST,
                            "defense_level": DEFENSE_LEVEL, "min_speed_percent": SPEED_PERCENT,
                            "test_inputs": INPUT_LIST,
